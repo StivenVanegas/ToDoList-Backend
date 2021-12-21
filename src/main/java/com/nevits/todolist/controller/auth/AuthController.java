@@ -34,7 +34,7 @@ public class AuthController {
     
     @PostMapping
     public TokenDto login(@RequestBody LoginDto loginDto) {
-        User user = userService.findByUsername(loginDto.email);
+        User user = userService.findByUsername(loginDto.username);
         if (BCrypt.checkpw(loginDto.password, user.getPasswordHash())) {
             return generateTokenDto(user);
         } else {
@@ -57,6 +57,6 @@ public class AuthController {
         Calendar expirationDate = Calendar.getInstance();
         expirationDate.add(Calendar.MINUTE, TOKEN_DURATION_MINUTES);
         String token = generateToken(user, expirationDate.getTime());
-        return new TokenDto(token, expirationDate.getTime());
+        return new TokenDto(token, expirationDate.getTime(), user.getId());
     }
 }

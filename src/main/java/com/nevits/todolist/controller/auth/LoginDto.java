@@ -2,17 +2,17 @@ package com.nevits.todolist.controller.auth;
 
 public class LoginDto {
     
-    String email;
+    String username;
 
     String password;
 
-    public LoginDto(String email, String password) {
-        this.email = email;
+    public LoginDto(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {
